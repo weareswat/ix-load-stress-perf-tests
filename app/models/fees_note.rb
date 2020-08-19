@@ -1,0 +1,2 @@
+class FeesNote < Estimate
+end

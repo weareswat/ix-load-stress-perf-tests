@@ -1,0 +1,2 @@
+class NewFeature < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class AffiliationCondition < ApplicationRecord
+end

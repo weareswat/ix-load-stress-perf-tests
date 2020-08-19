@@ -1,0 +1,2 @@
+class OauthNonce < ApplicationRecord
+end

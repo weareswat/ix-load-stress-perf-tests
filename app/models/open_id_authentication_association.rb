@@ -1,0 +1,2 @@
+class OpenIdAuthenticationAssociation < ApplicationRecord
+end

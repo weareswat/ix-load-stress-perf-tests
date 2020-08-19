@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  ix-load-stress-perf-tests:
+    image: ${IMAGE_TAG}
+    build:
+      context: .
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c
+      "rm -f tmp/pids/server.pid
+      && bundle exec rails s -d -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+    ports:
+      - "3010:3010"

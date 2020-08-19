@@ -1,0 +1,2 @@
+class CreditNote < Note
+end

@@ -1,0 +1,2 @@
+class DebitNote < Note
+end

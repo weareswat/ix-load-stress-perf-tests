@@ -1,0 +1,2 @@
+class CashInvoice < Invoice
+end

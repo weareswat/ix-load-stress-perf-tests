@@ -1,0 +1,2 @@
+class Devolution < Guide
+end

@@ -1,0 +1,2 @@
+class JukesSDoc < ApplicationRecord
+end

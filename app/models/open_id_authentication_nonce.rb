@@ -1,0 +1,2 @@
+class OpenIdAuthenticationNonce < ApplicationRecord
+end

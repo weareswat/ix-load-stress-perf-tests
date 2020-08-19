@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  db:
+    image: mysql:5.5.59
+    restart: on-failure
+    stdin_open: true
+    tty: true
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
+      - MYSQL_DATABASE=ix_dev
+      - MYSQL_USER=root
+    volumes:
+      - ./doc/database/dump:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+
+  ix-load-stress-perf-tests:
+    build:
+      context: .
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c
+      "rm -f tmp/pids/server.pid
+      && bundle exec rails s -p 3010 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+    links:
+      - db
+    ports:
+      - "3010:3010"
