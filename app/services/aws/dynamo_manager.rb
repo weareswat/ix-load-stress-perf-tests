@@ -6,8 +6,8 @@ module Aws
 
     def initialize
       @dynamo_client ||= Aws::DynamoDB::Client.new(
-          access_key_id: "AKIAJPTPBFWKDI2CKMJA",
-          secret_access_key: "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",
+          access_key_id: Rails.application.secrets.s3_access_key_id,
+          secret_access_key: Rails.application.secrets.s3_secret_access_key,
           region: "eu-west-1".freeze
       )
     end
