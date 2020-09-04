@@ -11,6 +11,7 @@ class Account < ApplicationRecord
   belongs_to :tax_location
   belongs_to :default_tax, :class_name => "Tax", :foreign_key => "current_tax_id"
   belongs_to :picture, :class_name => "AccountPicture", :foreign_key => "picture_id", optional: true
+  has_many :taxes, :as => :taxable, :dependent=>:destroy
 
   has_many :subscriptions, -> { order('created_at ASC') }, :dependent=>:destroy
 

@@ -1,5 +1,13 @@
 class CreateSequence
 
+  STATE_MANAGER_SEQUENCE_TABLE_NAME = "StateManager-Sequence-#{if Rails.env.test? || Rails.env.development?
+                                                                 'Dev'
+                                                               elsif  Rails.env.staging?
+                                                                 'Staging'
+                                                               elsif  Rails.env.production?
+                                                                 'Production'
+                                                               end}"
+
   def self.run!(account, name, params={})
     interactor = self.new(account, name, params)
     interactor.run!
@@ -87,9 +95,33 @@ class CreateSequence
     sequence.save
 
     sequence
+
+    sync_dynamo_sequences_table(sequence)
+
   rescue => ex
     puts "GODAMNIT #{ex}"
     raise ex
+  end
+
+  def sync_dynamo_sequences_table(sequence)
+    @@dynamo_manager ||= Aws::DynamoManager.new
+
+    type = sequence.category.camelize.singularize
+
+    item = {}
+    item["SequenceId"] = "#{sequence.id}"
+    item["AccountId_Type"] = "#{sequence.account_id}_#{type}"
+    item["AccountId"] = "#{sequence.account_id}"
+    item["Name"] = sequence.serie
+    item["Type"] = type
+    item["CurrentNumber"] = 0
+    item["LastIssueDate"] = {
+        "nanos": 0,
+        "seconds": 1098918400
+    }
+    item["LastDueDate"] = ""
+    item["LastSaftHash"] = "0"
+    @@dynamo_manager.create_item(STATE_MANAGER_SEQUENCE_TABLE_NAME, item)
   end
 
 end

@@ -2,7 +2,7 @@ module Scenario
   module Account
     class CreateForExistingUser
 
-      attr_reader :email, :user, :account, :current_membership
+      attr_reader :email, :user, :account, :current_membership, :tax
 
       def initialize(email)
         @email = email
@@ -23,7 +23,8 @@ module Scenario
                "language": "pt",
                "currency_id": 1,
                #"terms": "1",
-               #"marketing": "0"
+               #"marketing": "0",
+               "version": 1
                }
 
         @account = ::Account.new(attributes)
@@ -35,8 +36,6 @@ module Scenario
         @account.provider_id = 7
         #account.email = account.owner.email unless account.owner.blank?
         @account.decimal_marker = TaxLocation.find(account.tax_location_id).decimal_marker
-
-
 
         #account.register!
         @account.generate_account_id!
@@ -63,6 +62,18 @@ module Scenario
         @current_membership.generate_api_key!
         @current_membership.save!
 
+        account_version_attrs = ::Account.find(@account.id).attributes.except('id')
+
+        account_version_attrs['account_id'] = @account.id
+        AccountVersion.create(account_version_attrs)
+
+        @tax = Tax.create({
+                             "name": "IVA23",
+                             "value": 23,
+                             "region": "PT",
+                             "taxable_id": @account.id,
+                             "taxable_type": "Account"
+                         })
       end
 
     end
