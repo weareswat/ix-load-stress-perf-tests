@@ -119,4 +119,8 @@ class Invoice < ApplicationRecord
     "#{self.formatted_type.gsub('/','_')}-#{inverted_sequence_number.parameterize}"
   end
 
+  def owner_invoice_valid?
+    owner_invoice && owner_invoice.account_id == account_id
+  end
+
 end

@@ -1,0 +1,4 @@
+class Transport < Guide
+
+
+end

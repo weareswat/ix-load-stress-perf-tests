@@ -1,0 +1,2 @@
+class PostpaidPlan < Plan
+end

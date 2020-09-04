@@ -1,0 +1,4 @@
+class VatMossInvoice < Invoice
+
+
+end

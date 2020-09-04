@@ -1,4 +1,4 @@
 class Tax < ApplicationRecord
-  belongs_to :tax_instance
-  belongs_to :taxable
+  belongs_to :taxable, :polymorphic => true
+  has_many :tax_instances, :dependent=>:destroy
 end
