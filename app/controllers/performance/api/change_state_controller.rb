@@ -51,11 +51,11 @@ class Performance::Api::ChangeStateController < ApplicationController
     # params test_token -> fetch scenario info from file
     # TODO
     Concurrent::Promise.execute do
-      perform_change_state(18833, "07aad6c85fcf3f1d2948fb7286124d6d85df96ea",  15)
+      perform_change_state(18835, "d8b47f69db13c524e99c90b514e72681b8c67f63",  13)
     end
 
     Concurrent::Promise.execute do
-      perform_change_state(18834, "27bf88aedf03d0bf7f3858a728dd23c73575866a", 15)
+      perform_change_state(18836, "5d778de5d45def2c425c0620da7b6caf06bd1af6", 13)
     end
   end
 
@@ -92,7 +92,7 @@ class Performance::Api::ChangeStateController < ApplicationController
                                     :open_timeout => 16)
       ending = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       elapsed = ending - starting
-      puts "Response for #{invoice.id}:\n -> #{response}\n IT TOOK #{elapsed} seconds"
+      puts "Response for #{invoice.id}:\n -> #{response} \n IT TOOK #{elapsed} seconds"
       #sleep(10)
     rescue Exception => ex
       puts "\n ********* DIOS MIO **********"
