@@ -96,7 +96,7 @@ class Performance::Api::ChangeStateController < ApplicationController
       #sleep(10)
     rescue Exception => ex
       puts "\n ********* DIOS MIO **********"
-      puts "ai ai ai! tenemos un problema, señor: #{ex.message}"
+      puts "ai ai ai! tenemos un problema, señor: #{ex.message}\n#{ex.backtrace.join("\n")}"
       puts "*******************************"
       #sleep(10)
       next
