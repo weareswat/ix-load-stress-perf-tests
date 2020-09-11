@@ -136,7 +136,7 @@ class Performance::Api::CreateController < ApplicationController
     elsif env == 'development'
       "http://localhost:3001/invoices.json?api_key=#{api_key}"
     elsif env == 'production'
-
+      "https://#{subdomain}.app.invoicexpress.com/invoices.json?api_key=#{api_key}"
     end
   end
 
