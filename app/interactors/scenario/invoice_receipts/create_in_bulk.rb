@@ -25,6 +25,9 @@ module Scenario
                                   "tax_exemption_message": "Sem Isenção. ",
                                   "date": "24/08/2020",
                                   "due_date": "24/08/2020",
+
+                                  #"date": "24/09/2020",
+                                  #"due_date": "23/10/2020",
                                   "currency_id": 1,
                                   "rate": 1.0,
                                   "subtotal": 100.0,

@@ -141,7 +141,7 @@ class Performance::Api::CreateController < ApplicationController
   end
 
   def generate_proprietary_uid
-    "bolt-i-31237123189981ddajkls23478y"
+    "bodesvermes-89231dsskj2310"
   end
 
 end

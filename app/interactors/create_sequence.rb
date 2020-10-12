@@ -115,12 +115,11 @@ class CreateSequence
     item["Name"] = sequence.serie
     item["Type"] = type
     item["CurrentNumber"] = 0
-    item["LastIssueDate"] = {
-        "nanos": 0,
-        "seconds": 1098918400
-    }
+    item["LastIssueDate"] = "1970-01-01 00:00:00 +0000"
     item["LastDueDate"] = ""
     item["LastSaftHash"] = "0"
+    item["LastEncryptedDoc"] = "0"
+
     @@dynamo_manager.create_item(STATE_MANAGER_SEQUENCE_TABLE_NAME, item)
   end
 
