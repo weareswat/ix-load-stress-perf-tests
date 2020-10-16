@@ -31,6 +31,6 @@ staging:
   database: invoicexpress_database_restore
   username: ixv3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
-  password: w3th3b3stmus1c
-  host: obiwan.rupeal.com
+  password: rupeal2012
+  host: ec2-3-82-195-202.compute-1.amazonaws.com
   port: 3306

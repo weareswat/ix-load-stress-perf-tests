@@ -50,3 +50,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # AWS DynamoDB
 gem 'aws-sdk-dynamodb', '~> 1.45.0'
+
+gem 'net-ssh-gateway'
